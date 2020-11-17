@@ -21,17 +21,10 @@ import sys
 
 trace.set_tracer_provider(TracerProvider())
 
-serviceName = os.environ['PROJECT_NAME']
-
-lsExporter = LightStepSpanExporter(
-  name=serviceName,
-  token=os.environ['LS_KEY']
-)
-
 hnyExporter = HoneycombSpanExporter(
-	service_name=serviceName,
-	writekey=os.environ['HNY_KEY'],
-	dataset="opentelemetry",
+	service_name="fibonacci",
+	writekey=os.environ['HONEYCOMB_API_KEY'],
+	dataset="kubecon2020",
 )
 
 trace.get_tracer_provider().add_span_processor(SimpleExportSpanProcessor(ConsoleSpanExporter()))
